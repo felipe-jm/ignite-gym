@@ -7,8 +7,15 @@ import { Group } from "@/components/group";
 import { HStack } from "@/components/ui/hstack";
 import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
+import { ExerciseCard } from "@/components/exercise-card";
 
 export function Home() {
+  const [exercises, setExercises] = useState([
+    "Puxada frontal",
+    "Remada",
+    "Levantamento terra",
+  ]);
+
   const [groups, setGroups] = useState<string[]>([
     "Costas",
     "Biceps",
@@ -45,9 +52,17 @@ export function Home() {
           </Heading>
 
           <Text className="text-gray-200 font-regular text-sm">
-            {groups.length}
+            {exercises.length}
           </Text>
         </HStack>
+
+        <FlatList
+          data={exercises}
+          keyExtractor={(item) => item}
+          renderItem={() => <ExerciseCard />}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingBottom: 24 }}
+        />
       </VStack>
     </VStack>
   );
