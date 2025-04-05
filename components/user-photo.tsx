@@ -1,12 +1,14 @@
+import { ComponentProps } from "react";
+
 import { Image } from "./ui/image";
 
-type UserPhotoProps = React.ComponentProps<typeof Image>;
+type UserPhotoProps = ComponentProps<typeof Image>;
 
-export function UserPhoto({ ...props }: UserPhotoProps) {
+export function UserPhoto({ ...rest }: UserPhotoProps) {
   return (
     <Image
-      className="h-12 w-12 rounded-full border-2 border-brand-gray-400 bg-brand-gray-700"
-      {...props}
+      className="rounded-full border-2 border-primary-300 bg-primary-500"
+      {...rest}
     />
   );
 }

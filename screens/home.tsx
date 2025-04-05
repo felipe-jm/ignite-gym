@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { FlatList } from "react-native";
 
-import { HomeHeader } from "@/components/home-header";
-import { VStack } from "@/components/ui/vstack";
-import { Group } from "@/components/group";
-import { HStack } from "@/components/ui/hstack";
-import { Heading } from "@/components/ui/heading";
-import { Text } from "@/components/ui/text";
-import { ExerciseCard } from "@/components/exercise-card";
+import { HomeHeader } from "@components/home-header";
+import { VStack } from "@components/ui/vstack";
+import { Group } from "@components/group";
+import { HStack } from "@components/ui/hstack";
+import { Heading } from "@components/ui/heading";
+import { Text } from "@components/ui/text";
+import { ExerciseCard } from "@components/exercise-card";
 
 export function Home() {
   const [exercises, setExercises] = useState([

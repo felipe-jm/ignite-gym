@@ -1,6 +1,6 @@
 import "@/global.css";
 
-import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
+import { GluestackUIProvider } from "@components/ui/gluestack-ui-provider";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
 import { Roboto_400Regular, Roboto_700Bold } from "@expo-google-fonts/roboto";

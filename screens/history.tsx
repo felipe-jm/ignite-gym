@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { SectionList } from "react-native";
 
-import { VStack } from "@/components/ui/vstack";
-import { ScreenHeader } from "@/components/screen-header";
-import { HistoryCard } from "@/components/history-card";
-import { Heading } from "@/components/ui/heading";
+import { VStack } from "@components/ui/vstack";
+import { ScreenHeader } from "@components/screen-header";
+import { HistoryCard } from "@components/history-card";
+import { Heading } from "@components/ui/heading";
 
 export function History() {
   const [exercises, setExercises] = useState([

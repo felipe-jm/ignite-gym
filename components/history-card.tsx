@@ -13,11 +13,11 @@ export function HistoryCard() {
             numberOfLines={1}
             className="text-md font-semibold capitalize"
           >
-            Costa
+            Costas
           </Heading>
 
           <Text className="text-lg" numberOfLines={1}>
-            Puxada frontal
+            Remada
           </Text>
         </VStack>
 

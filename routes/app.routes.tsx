@@ -3,14 +3,14 @@ import {
   BottomTabNavigationProp,
 } from "@react-navigation/bottom-tabs";
 
-import HomeSvg from "@/assets/home.svg";
-import HistorySvg from "@/assets/history.svg";
-import ProfileSvg from "@/assets/profile.svg";
+import HomeSvg from "@assets/home.svg";
+import HistorySvg from "@assets/history.svg";
+import ProfileSvg from "@assets/profile.svg";
 
-import { Home } from "@/screens/home";
-import { Exercise } from "@/screens/exercise";
-import { Profile } from "@/screens/profile";
-import { History } from "@/screens/history";
+import { Home } from "@screens/home";
+import { Exercise } from "@screens/exercise";
+import { Profile } from "@screens/profile";
+import { History } from "@screens/history";
 import { Platform } from "react-native";
 
 // Define theme constants

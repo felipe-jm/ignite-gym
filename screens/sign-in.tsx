@@ -2,24 +2,24 @@ import { ScrollView } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
 
-import { VStack } from "@/components/ui/vstack";
-import { Image } from "@/components/ui/image";
-import { Center } from "@/components/ui/center";
-import { Text } from "@/components/ui/text";
-import { Heading } from "@/components/ui/heading";
-import { Input } from "@/components/input";
-import { Button } from "@/components/button";
+import { VStack } from "@components/ui/vstack";
+import { Image } from "@components/ui/image";
+import { Center } from "@components/ui/center";
+import { Text } from "@components/ui/text";
+import { Heading } from "@components/ui/heading";
+import { Input } from "@components/input";
+import { Button } from "@components/button";
 
-import { AuthNavigatorRoutesProps } from "@/routes/auth.routes";
+import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
 
-import BackgroundImage from "@/assets/background.png";
-import Logo from "@/assets/logo.svg";
+import BackgroundImage from "@assets/background.png";
+import Logo from "@assets/logo.svg";
 
 export function SignIn() {
   const navigator = useNavigation<AuthNavigatorRoutesProps>();
 
   function handleNewAccount() {
-    navigator.navigate("sign-up");
+    navigator.navigate("signUp");
   }
 
   return (

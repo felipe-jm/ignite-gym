@@ -1,30 +1,37 @@
+import { Card } from "./ui/card";
 import { Heading } from "./ui/heading";
 import { HStack } from "./ui/hstack";
-import { VStack } from "./ui/vstack";
 import { Text } from "./ui/text";
+import { VStack } from "./ui/vstack";
+import { UserPhoto } from "./user-photo";
+import { Button, ButtonIcon } from "./ui/button";
 
 import { LogOut } from "lucide-react-native";
 
-import { UserPhoto } from "./user-photo";
-import { Icon } from "./ui/icon";
-import { Card } from "./ui/card";
+import defaultUserPhotoImg from "@assets/userPhotoDefault.png";
 
 export function HomeHeader() {
   return (
     <Card variant="filled">
       <HStack className="mt-10 pb-5 items-center gap-4">
         <UserPhoto
-          source={{ uri: "https://github.com/felipe-jm.png" }}
-          className="w-16 h-16"
-          alt="Imagem do usuário"
+          source={defaultUserPhotoImg}
+          alt="Foto do usuário"
+          size="sm"
         />
-
         <VStack className="flex-1">
           <Text>Olá,</Text>
-          <Heading>João</Heading>
+          <Heading>John Doe</Heading>
         </VStack>
 
-        <Icon as={LogOut} color="gray-200" size="xl" />
+        <Button
+          variant="link"
+          size="xl"
+          className="justify-start items-center"
+          onPress={() => {}}
+        >
+          <ButtonIcon size="xl" as={LogOut} />
+        </Button>
       </HStack>
     </Card>
   );

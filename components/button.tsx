@@ -1,48 +1,26 @@
+import { ComponentProps } from "react";
 import {
-  ButtonSpinner,
   Button as GluestackButton,
-} from "@/components/ui/button";
-import { Text } from "@/components/ui/text";
-import { Box } from "@/components/ui/box";
+  ButtonText,
+  ButtonSpinner,
+} from "@components/ui/button";
 
-type ButtonProps = React.ComponentProps<typeof GluestackButton> & {
+interface Props extends ComponentProps<typeof GluestackButton> {
   title: string;
-  variant?: "solid" | "outline";
   isLoading?: boolean;
-};
+}
 
-export function Button({
-  title,
-  isLoading = false,
-  variant = "solid",
-  ...props
-}: ButtonProps) {
+export function Button({ title, isLoading = false, ...rest }: Props) {
   return (
     <GluestackButton
-      className={`w-full h-14 items-center justify-center rounded-sm ${
-        variant === "solid"
-          ? "bg-brand-green-500 border-0 active:bg-brand-green-500"
-          : "bg-transparent border border-brand-green-500 active:bg-transparent"
-      }`}
+      {...rest}
+      className="w-full rounded-md"
       disabled={isLoading}
-      {...props}
     >
       {isLoading ? (
-        <Box className="w-full h-full items-center justify-center">
-          <ButtonSpinner
-            className={
-              variant === "solid" ? "text-white" : "text-brand-green-500"
-            }
-          />
-        </Box>
+        <ButtonSpinner size={"small"} />
       ) : (
-        <Text
-          className={`w-full text-center text-sm ${
-            variant === "solid" ? "text-white" : "text-brand-green-500"
-          }`}
-        >
-          {title}
-        </Text>
+        <ButtonText>{title}</ButtonText>
       )}
     </GluestackButton>
   );

@@ -1,25 +1,36 @@
 import { ComponentProps } from "react";
-
 import { Button } from "./ui/button";
 import { Text } from "./ui/text";
 
-type GroupProps = ComponentProps<typeof Button> & {
+interface Props extends ComponentProps<typeof Button> {
   name: string;
   isActive: boolean;
-};
+}
 
-export function Group({ name, isActive, ...props }: GroupProps) {
+export function Group({ name, isActive, ...rest }: Props) {
   return (
     <Button
-      {...props}
-      className={`h-12 w-full items-center justify-center rounded-md border-2 border-transparent bg-brand-gray-700 ${
-        isActive ? "border-brand-green-500" : "border-transparent"
-      }`}
+      {...rest}
+      className={`
+        min-w-24
+        h-10
+        bg-background-0
+        rounded-md
+        justify-center
+        items-center
+        border-primary-500                
+        active:border
+        active:border-primary-500  
+        ${isActive ? "border" : "border-none"}
+    `}
     >
       <Text
-        className={`text-gray-200 bold text-base uppercase ${
-          isActive ? "text-brand-green-500" : "text-brand-gray-200"
-        }`}
+        className={`
+            ${isActive ? "text-primary-500" : "text-typography-900"} 
+            uppercase
+            text-sm
+            font-heading
+        `}
       >
         {name}
       </Text>

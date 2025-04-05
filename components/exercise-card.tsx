@@ -4,36 +4,39 @@ import { ChevronRight } from "lucide-react-native";
 
 import { HStack } from "./ui/hstack";
 import { Image } from "./ui/image";
+import { Card } from "./ui/card";
 import { VStack } from "./ui/vstack";
-import { Text } from "./ui/text";
 import { Heading } from "./ui/heading";
+import { Text } from "./ui/text";
 import { Icon } from "./ui/icon";
 
 type ExerciseCardProps = TouchableOpacityProps;
 
-export function ExerciseCard({ ...props }: ExerciseCardProps) {
+export function ExerciseCard({ ...rest }: ExerciseCardProps) {
   return (
-    <TouchableOpacity {...props}>
-      <HStack className="w-full h-36 rounded-lg bg-brand-gray-700 items-center justify-center overflow-hidden">
-        <Image
-          source={{ uri: "https://github.com/felipe-jm.png" }}
-          className="w-16 h-16"
-          alt="Imagem do exercício"
-          resizeMode="cover"
-        />
+    <Card className="w-full">
+      <TouchableOpacity {...rest}>
+        <HStack space="xl" className="items-center">
+          <Image
+            source={{
+              uri: "https://github.com/felipe-jm.png",
+            }}
+            alt="Imagem do exercício"
+            size="md"
+            className="rounded-md "
+            resizeMode="cover"
+          />
 
-        <VStack>
-          <Heading className="text-white font-bold text-lg">
-            Puxada frontal
-          </Heading>
+          <VStack space="sm" className="flex-1">
+            <Heading>Remada</Heading>
+            <Text className="text-typography-500" numberOfLines={2}>
+              3 séries x 12 repetições
+            </Text>
+          </VStack>
 
-          <Text className="text-white font-regular text-sm line-clamp-2">
-            3 séries x 10 repetições
-          </Text>
-        </VStack>
-
-        <Icon as={ChevronRight} className="text-white" />
-      </HStack>
-    </TouchableOpacity>
+          <Icon as={ChevronRight} />
+        </HStack>
+      </TouchableOpacity>
+    </Card>
   );
 }
