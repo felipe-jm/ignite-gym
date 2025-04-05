@@ -6,6 +6,8 @@ import { Center } from "@components/ui/center";
 import { UserPhoto } from "@components/user-photo";
 import { Text } from "@components/ui/text";
 import { Input } from "@components/input";
+import { Heading } from "@components/ui/heading";
+import { Button } from "@components/button";
 
 import defaultUserPhotoImg from "@assets/userPhotoDefault.png";
 
@@ -47,6 +49,32 @@ export function Profile() {
               className="bg-brand-gray-600"
               onChangeText={() => {}}
             />
+          </Center>
+
+          <Heading className="text-brand-gray-200 text-md mt-12 mb-2 self-start">
+            Alterar senha
+          </Heading>
+
+          <Center className="w-full gap-4">
+            <Input
+              placeholder="Senha antiga"
+              className="bg-brand-gray-600"
+              onChangeText={() => {}}
+            />
+
+            <Input
+              placeholder="Nova senha"
+              className="bg-brand-gray-600"
+              onChangeText={() => {}}
+            />
+
+            <Input
+              placeholder="Confirmar nova senha"
+              className="bg-brand-gray-600"
+              onChangeText={() => {}}
+            />
+
+            <Button title="Atualizar" />
           </Center>
         </Center>
       </ScrollView>

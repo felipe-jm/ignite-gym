@@ -14,7 +14,7 @@ export function Button({ title, isLoading = false, ...rest }: Props) {
   return (
     <GluestackButton
       {...rest}
-      className="w-full rounded-md"
+      className="w-full rounded-md bg-brand-green-700"
       disabled={isLoading}
     >
       {isLoading ? (
