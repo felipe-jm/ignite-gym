@@ -10,7 +10,10 @@
   },
   "dependencies": {
     "@expo-google-fonts/roboto": "^0.3.0",
+    "@expo/html-elements": "^0.4.2",
     "@gluestack-ui/icon": "^0.1.27",
+    "@gluestack-ui/image": "^0.1.17",
+    "@gluestack-ui/input": "^0.1.38",
     "@gluestack-ui/nativewind-utils": "^1.0.26",
     "@gluestack-ui/overlay": "^0.1.22",
     "@gluestack-ui/spinner": "^0.1.15",
@@ -31,8 +34,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
+    "@react-native/babel-preset": "^0.78.2",
     "@types/react": "~18.3.12",
     "jscodeshift": "^0.15.2",
+    "react-native-svg-transformer": "^1.5.0",
     "typescript": "^5.3.3"
   },
   "private": true

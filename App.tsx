@@ -5,9 +5,9 @@ import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
 import { Roboto_400Regular, Roboto_700Bold } from "@expo-google-fonts/roboto";
 
-import { Text } from "@/components/ui/text";
-import { Center } from "./components/ui/center";
 import { Loading } from "./components/loading";
+
+import { SignIn } from "./screens/sign-in";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -27,9 +27,7 @@ export default function App() {
     <GluestackUIProvider mode="light">
       <StatusBar style="light" />
 
-      <Center className="flex-1 bg-gray-900">
-        <Text className="text-white">Home</Text>
-      </Center>
+      <SignIn />
     </GluestackUIProvider>
   );
 }

@@ -13,29 +13,31 @@ module.exports = {
   safelist: [
     {
       pattern:
-        /(bg|border|text|stroke|fill)-(primary|secondary|tertiary|error|success|warning|info|typography|outline|background|indicator)-(0|50|100|200|300|400|500|600|700|800|900|950|white|gray|black|error|warning|muted|success|info|light|dark|primary)/,
+        /(bg|border|text|stroke|fill)-(primary|secondary|tertiary|error|success|warning|info|typography|outline|background|indicator|brand)-(0|50|100|200|300|400|500|600|700|800|900|950|white|gray|black|error|warning|muted|success|info|light|dark|primary)/,
     },
   ],
   theme: {
     extend: {
       colors: {
-        green: {
-          500: "#00B37E",
-          600: "#16a34a",
-          700: "#00875F",
-        },
-        gray: {
-          100: "#E1E1E6",
-          200: "#C4C4CC",
-          300: "#7C7C8A",
-          400: "#323238",
-          500: "#29292E",
-          600: "#202024",
-          700: "#121214",
-          900: "#121214",
-        },
-        red: {
-          500: "#F75A68",
+        brand: {
+          green: {
+            500: "#00B37E",
+            600: "#16a34a",
+            700: "#00875F",
+          },
+          gray: {
+            100: "#E1E1E6",
+            200: "#C4C4CC",
+            300: "#7C7C8A",
+            400: "#323238",
+            500: "#29292E",
+            600: "#202024",
+            700: "#121214",
+            900: "#121214",
+          },
+          red: {
+            500: "#F75A68",
+          },
         },
         primary: {
           0: "rgb(var(--color-primary-0)/<alpha-value>)",
@@ -192,6 +194,41 @@ module.exports = {
           error: "rgb(var(--color-indicator-error)/<alpha-value>)",
         },
       },
+      spacing: {
+        0.5: "2px",
+        1: "4px",
+        1.5: "6px",
+        2: "8px",
+        2.5: "10px",
+        3: "12px",
+        3.5: "14px",
+        4: "16px",
+        5: "20px",
+        6: "24px",
+        7: "28px",
+        8: "32px",
+        9: "36px",
+        10: "40px",
+        11: "44px",
+        12: "48px",
+        14: "56px",
+        16: "64px",
+        20: "80px",
+        24: "96px",
+        28: "112px",
+        32: "128px",
+        36: "144px",
+        40: "160px",
+        44: "176px",
+        48: "192px",
+        52: "208px",
+        56: "224px",
+        60: "240px",
+        64: "256px",
+        72: "288px",
+        80: "320px",
+        96: "384px",
+      },
       fontFamily: {
         heading: ["Roboto_700Bold", "sans-serif"],
         body: ["Roboto_400Regular", "sans-serif"],
@@ -208,10 +245,6 @@ module.exports = {
         md: "16px",
         lg: "18px",
         xl: "20px",
-      },
-      spacing: {
-        14: "56px",
-        33: "148px",
       },
       boxShadow: {
         "hard-1": "-2px 2px 8px 0px rgba(38, 38, 38, 0.20)",
