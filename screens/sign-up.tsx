@@ -1,5 +1,7 @@
 import { ScrollView } from "react-native";
 
+import { useNavigation } from "@react-navigation/native";
+
 import { VStack } from "@/components/ui/vstack";
 import { Image } from "@/components/ui/image";
 import { Center } from "@/components/ui/center";
@@ -12,6 +14,12 @@ import BackgroundImage from "@/assets/background.png";
 import Logo from "@/assets/logo.svg";
 
 export function SignUp() {
+  const navigator = useNavigation();
+
+  function handleGoBack() {
+    navigator.goBack();
+  }
+
   return (
     <ScrollView
       contentContainerStyle={{ flexGrow: 1 }}
@@ -61,7 +69,11 @@ export function SignUp() {
               Já tem uma conta?
             </Text>
 
-            <Button title="Voltar para o login" variant="outline" />
+            <Button
+              title="Voltar para o login"
+              variant="outline"
+              onPress={handleGoBack}
+            />
           </Center>
         </VStack>
       </VStack>
