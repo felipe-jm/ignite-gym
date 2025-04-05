@@ -4,6 +4,7 @@ import { Center } from "@/components/ui/center";
 import { Text } from "@/components/ui/text";
 import { Heading } from "@/components/ui/heading";
 import { Input } from "@/components/input";
+import { Button } from "@/components/button";
 
 import BackgroundImage from "@/assets/background.png";
 import Logo from "@/assets/logo.svg";
@@ -41,6 +42,8 @@ export function SignIn() {
             autoCapitalize="none"
           />
           <Input placeholder="Senha" secureTextEntry />
+
+          <Button title="Acessar" />
         </Center>
       </VStack>
     </VStack>
