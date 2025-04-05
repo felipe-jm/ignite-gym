@@ -26,7 +26,7 @@ export function Home() {
   const [selectedGroup, setSelectedGroup] = useState<string>("Costas");
 
   return (
-    <VStack className="flex-1 bg-brand-gray-900">
+    <VStack className="flex-1 bg-gray-900">
       <HomeHeader />
 
       <FlatList

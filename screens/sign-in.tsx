@@ -24,33 +24,26 @@ export function SignIn() {
 
   return (
     <ScrollView
-      contentContainerStyle={{ flexGrow: 1 }}
       showsVerticalScrollIndicator={false}
+      className="flex-grow bg-background-900 h-full"
     >
-      <VStack className="flex-1 bg-brand-gray-900">
+      <VStack className="w-full flex-1" space="md">
         <Image
-          className="w-full h-[624px]"
+          className="absolute w-full h-[624]"
           defaultSource={BackgroundImage}
           source={BackgroundImage}
           alt="Pessoas treinando"
         />
 
-        <VStack
-          className="flex-1 items-center justify-center"
-          style={{ marginTop: -700, marginInline: 42 }}
-        >
-          <Center>
+        <VStack space="4xl" className="px-10 pb-16 flex-1">
+          <Center className="my-24">
             <Logo />
 
-            <Text className="text-brand-gray-100 text-sm">
-              Faça login para continuar
-            </Text>
+            <Text className="text-sm">Faça login para continuar</Text>
           </Center>
 
           <Center className="gap-2" style={{ marginTop: 100 }}>
-            <Heading className="text-brand-gray-100 text-2xl font-bold">
-              Acesse sua conta
-            </Heading>
+            <Heading className="text-white text-2xl">Acesse sua conta</Heading>
 
             <Input
               placeholder="E-mail"
@@ -62,15 +55,13 @@ export function SignIn() {
             <Button title="Acessar" />
           </Center>
 
-          <Center style={{ paddingTop: 256 }}>
-            <Text
-              className="text-brand-gray-100 text-sm"
-              style={{ marginBottom: 12 }}
-            >
+          <Center className="flex-end mt-16">
+            <Text className="text-sm mb-4 font-body">
               Ainda não tem acesso?
             </Text>
 
             <Button
+              size="xl"
               title="Criar conta"
               variant="outline"
               onPress={handleNewAccount}

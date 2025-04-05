@@ -22,33 +22,26 @@ export function SignUp() {
 
   return (
     <ScrollView
-      contentContainerStyle={{ flexGrow: 1 }}
       showsVerticalScrollIndicator={false}
+      className="flex-grow bg-background-900 h-full"
     >
-      <VStack className="flex-1 bg-brand-gray-900">
+      <VStack space="4xl" className="px-10 pb-16 flex-1">
         <Image
-          className="w-full h-[624px]"
+          className="absolute w-full h-[624]"
           defaultSource={BackgroundImage}
           source={BackgroundImage}
           alt="Pessoas treinando"
         />
 
-        <VStack
-          className="flex-1 items-center justify-center"
-          style={{ marginTop: -700, marginInline: 42 }}
-        >
-          <Center>
+        <VStack space="4xl" className="px-10 pb-16 flex-1">
+          <Center className="my-24">
             <Logo />
 
-            <Text className="text-brand-gray-100 text-sm">
-              Crie sua conta para continuar
-            </Text>
+            <Text className="text-sm">Crie sua conta para continuar</Text>
           </Center>
 
-          <Center className="gap-2" style={{ marginTop: 100 }}>
-            <Heading className="text-brand-gray-100 text-2xl font-bold">
-              Crie sua conta
-            </Heading>
+          <Center className="gap-4 flex-1">
+            <Heading className="text-white text-2xl">Crie sua conta</Heading>
 
             <Input placeholder="Nome" />
             <Input
@@ -58,18 +51,19 @@ export function SignUp() {
             />
             <Input placeholder="Senha" secureTextEntry />
 
-            <Button title="Criar conta" />
+            <Button size="xl" title="Criar conta" />
           </Center>
 
-          <Center style={{ paddingTop: 256 }}>
+          <Center className="flex-end mt-16">
             <Text
-              className="text-brand-gray-100 text-sm"
+              className="text-gray-100 text-sm"
               style={{ marginBottom: 12 }}
             >
               Já tem uma conta?
             </Text>
 
             <Button
+              size="xl"
               title="Voltar para o login"
               variant="outline"
               onPress={handleGoBack}

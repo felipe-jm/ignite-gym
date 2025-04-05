@@ -1,10 +1,13 @@
 import "@/global.css";
 
-import { GluestackUIProvider } from "@components/ui/gluestack-ui-provider";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
+
 import { Roboto_400Regular, Roboto_700Bold } from "@expo-google-fonts/roboto";
 
+import { SafeAreaView } from "react-native-safe-area-context";
+
+import { GluestackUIProvider } from "@components/ui/gluestack-ui-provider";
 import { Loading } from "./components/loading";
 
 import { Routes } from "./routes";
@@ -17,17 +20,19 @@ export default function App() {
 
   if (!fontsLoaded) {
     return (
-      <GluestackUIProvider mode="light">
+      <GluestackUIProvider>
         <Loading />
       </GluestackUIProvider>
     );
   }
 
   return (
-    <GluestackUIProvider mode="light">
-      <StatusBar style="light" />
+    <GluestackUIProvider>
+      <SafeAreaView className="flex-1 bg-background-0">
+        <StatusBar backgroundColor="transparent" style="light" translucent />
 
-      <Routes />
+        <Routes />
+      </SafeAreaView>
     </GluestackUIProvider>
   );
 }
