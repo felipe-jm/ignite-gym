@@ -21,7 +21,7 @@ export function SignIn() {
 
       <VStack
         className="flex-1 items-center justify-center"
-        style={{ marginTop: -1100, marginInline: 42 }}
+        style={{ marginTop: -700, marginInline: 42 }}
       >
         <Center>
           <Logo />
@@ -44,6 +44,17 @@ export function SignIn() {
           <Input placeholder="Senha" secureTextEntry />
 
           <Button title="Acessar" />
+        </Center>
+
+        <Center style={{ paddingTop: 256 }}>
+          <Text
+            className="text-brand-gray-100 text-sm"
+            style={{ marginBottom: 12 }}
+          >
+            Ainda não tem acesso?
+          </Text>
+
+          <Button title="Criar conta" variant="outline" />
         </Center>
       </VStack>
     </VStack>
