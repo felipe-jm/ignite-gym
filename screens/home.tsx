@@ -23,7 +23,7 @@ export function Home() {
     "Pernas",
   ]);
 
-  const [selectedGroup, setSelectedGroup] = useState<string>("");
+  const [selectedGroup, setSelectedGroup] = useState<string>("Costas");
 
   return (
     <VStack className="flex-1 bg-brand-gray-900">
@@ -35,7 +35,7 @@ export function Home() {
         renderItem={({ item }) => (
           <Group
             name={item}
-            isActive={selectedGroup === item}
+            isActive={selectedGroup.toLowerCase() === item.toLowerCase()}
             onPress={() => setSelectedGroup(item)}
           />
         )}
