@@ -26,7 +26,7 @@ export function Home() {
   const [selectedGroup, setSelectedGroup] = useState<string>("Costas");
 
   return (
-    <VStack className="flex-1 bg-gray-900">
+    <VStack className="flex-1 bg-brand-gray-900 h-full">
       <HomeHeader />
 
       <FlatList
@@ -45,15 +45,11 @@ export function Home() {
         style={{ marginVertical: 40, maxHeight: 44, minHeight: 44 }}
       />
 
-      <VStack className="flex-1 px-8">
-        <HStack className="flex-1 gap-2 items-center justify-between">
-          <Heading className="text-gray-200 font-bold text-base">
-            Exercícios
-          </Heading>
+      <VStack className="px-8 flex-1">
+        <HStack className="justify-between mb-5 items-center">
+          <Heading className="text-brand-gray-200">Exercícios</Heading>
 
-          <Text className="text-gray-200 font-regular text-sm">
-            {exercises.length}
-          </Text>
+          <Text className="text-brand-gray-200">{exercises.length}</Text>
         </HStack>
 
         <FlatList

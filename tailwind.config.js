@@ -21,6 +21,27 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        brand: {
+          green: {
+            500: "#00B37E",
+            600: "#16a34a",
+            700: "#00875F",
+          },
+          gray: {
+            100: "#E1E1E6",
+            200: "#C4C4CC",
+            300: "#7C7C8A",
+            400: "#323238",
+            500: "#29292E",
+            600: "#202024",
+            700: "#121214",
+            900: "#121214",
+          },
+          red: {
+            500: "#F75A68",
+          },
+        },
+
         primary: {
           0: "rgb(var(--color-primary-0)/<alpha-value>)",
           50: "rgb(var(--color-primary-50)/<alpha-value>)",

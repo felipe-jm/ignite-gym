@@ -1,4 +1,4 @@
-import { Card } from "./ui/card";
+import { Center } from "./ui/center";
 import { Heading } from "./ui/heading";
 
 interface ScreenHeaderProps {
@@ -7,8 +7,10 @@ interface ScreenHeaderProps {
 
 export function ScreenHeader({ title }: ScreenHeaderProps) {
   return (
-    <Card size="lg" className="items-center rounded-none">
-      <Heading size="lg">{title}</Heading>
-    </Card>
+    <Center className="bg-brand-gray-600 pb-6 pt-16">
+      <Heading size="lg" className="text-brand-gray-100">
+        {title}
+      </Heading>
+    </Center>
   );
 }

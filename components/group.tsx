@@ -12,21 +12,22 @@ export function Group({ name, isActive, ...rest }: Props) {
     <Button
       {...rest}
       className={`
+        mr-3
         min-w-24
         h-10
-        bg-background-0
+        bg-brand-gray-600
         rounded-md
         justify-center
         items-center
-        border-primary-500                
+        border-brand-green-500                
         active:border
-        active:border-primary-500  
+        active:border-brand-green-500  
         ${isActive ? "border" : "border-none"}
     `}
     >
       <Text
         className={`
-            ${isActive ? "text-primary-500" : "text-typography-900"} 
+            ${isActive ? "text-brand-green-500" : "text-brand-gray-200"} 
             uppercase
             text-sm
             font-heading
