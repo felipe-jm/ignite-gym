@@ -5,10 +5,10 @@ import {
   ButtonSpinner,
 } from "@components/ui/button";
 
-interface Props extends ComponentProps<typeof GluestackButton> {
+type Props = ComponentProps<typeof GluestackButton> & {
   title: string;
   isLoading?: boolean;
-}
+};
 
 export function Button({ title, isLoading = false, ...rest }: Props) {
   return (
