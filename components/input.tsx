@@ -44,7 +44,7 @@ export function Input({
         <InputField
           className={cn(
             "px-4",
-            isReadOnly ? "bg-brand-gray-600" : "bg-background-700",
+            isReadOnly ? "bg-brand-gray-600" : "bg-brand-gray-700",
             "text-white",
             className
           )}
