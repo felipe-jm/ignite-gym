@@ -5,7 +5,7 @@ import { Loading } from "@components/loading";
 import { Center } from "@components/ui/center";
 
 import { AuthRoutes } from "./auth.routes";
-import { useAuth } from "./hooks/useAuth";
+import { useAuth } from "@hooks/useAuth";
 
 import { AppRoutes } from "./app.routes";
 

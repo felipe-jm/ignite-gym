@@ -9,7 +9,7 @@ import { Button, ButtonIcon } from "./ui/button";
 
 import defaultUserPhotoImg from "@assets/userPhotoDefault.png";
 
-import { useAuth } from "@routes/hooks/useAuth";
+import { useAuth } from "@hooks/useAuth";
 
 export function HomeHeader() {
   const { user, signOut } = useAuth();

@@ -25,7 +25,7 @@ import Logo from "@assets/logo.svg";
 
 import { AppError } from "@utils/app-error";
 
-import { useAuth } from "@routes/hooks/useAuth";
+import { useAuth } from "@hooks/useAuth";
 
 type FormData = {
   email: string;

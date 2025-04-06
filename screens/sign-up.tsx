@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ScrollView } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
@@ -21,6 +22,9 @@ import Logo from "@assets/logo.svg";
 import { api } from "@services/api";
 import { AppError } from "@utils/app-error";
 import { ToastMessage } from "@components/toast-message";
+
+import { saveUserStorage } from "@storage/user";
+import { useAuth } from "@hooks/useAuth";
 
 type FormData = {
   name: string;
@@ -48,6 +52,10 @@ export function SignUp() {
 
   const toast = useToast();
 
+  const { signIn } = useAuth();
+
+  const [isLoading, setIsLoading] = useState(false);
+
   const {
     control,
     handleSubmit,
@@ -69,13 +77,17 @@ export function SignUp() {
 
   async function handleSignUp({ name, email, password }: FormData) {
     try {
+      setIsLoading(true);
+
       const response = await api.post("/users", {
         name,
         email,
         password,
       });
 
-      console.log("handleSignUp", response);
+      await saveUserStorage(response.data);
+
+      await signIn(email, password);
     } catch (error) {
       const isAppError = error instanceof AppError;
 
@@ -96,6 +108,8 @@ export function SignUp() {
           />
         ),
       });
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -181,8 +195,9 @@ export function SignUp() {
 
             <Button
               size="xl"
-              title="Criar conta"
+              title="Criar e acessar"
               onPress={handleSubmit(handleSignUp)}
+              isLoading={isLoading}
             />
           </Center>
 
