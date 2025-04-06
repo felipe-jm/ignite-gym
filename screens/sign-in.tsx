@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ScrollView } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
@@ -11,13 +12,20 @@ import { Image } from "@components/ui/image";
 import { Center } from "@components/ui/center";
 import { Text } from "@components/ui/text";
 import { Heading } from "@components/ui/heading";
+import { useToast } from "@components/ui/toast";
+
 import { Input } from "@components/input";
 import { Button } from "@components/button";
+import { ToastMessage } from "@components/toast-message";
 
 import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
 
 import BackgroundImage from "@assets/background.png";
 import Logo from "@assets/logo.svg";
+
+import { AppError } from "@utils/app-error";
+
+import { useAuth } from "@routes/hooks/useAuth";
 
 type FormData = {
   email: string;
@@ -31,6 +39,12 @@ const signInSchema = z.object({
 
 export function SignIn() {
   const navigator = useNavigation<AuthNavigatorRoutesProps>();
+
+  const toast = useToast();
+
+  const { signIn } = useAuth();
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     control,
@@ -49,10 +63,32 @@ export function SignIn() {
     navigator.navigate("signUp");
   }
 
-  function handleSignIn({ email, password }: FormData) {
-    console.log(email, password);
-  }
+  async function handleSignIn({ email, password }: FormData) {
+    try {
+      setIsLoading(true);
+      await signIn(email, password);
+    } catch (error) {
+      const isAppError = error instanceof AppError;
 
+      const title = isAppError
+        ? error.message
+        : "Não foi possível acessar. Tente novamente mais tarde.";
+
+      toast.show({
+        placement: "top",
+        render: ({ id }) => (
+          <ToastMessage
+            id={id}
+            action="error"
+            title={title}
+            onClose={() => toast.close(id)}
+          />
+        ),
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  }
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
@@ -105,7 +141,11 @@ export function SignIn() {
               )}
             />
 
-            <Button title="Acessar" onPress={handleSubmit(handleSignIn)} />
+            <Button
+              title="Acessar"
+              onPress={handleSubmit(handleSignIn)}
+              isLoading={isLoading}
+            />
           </Center>
 
           <Center className="flex-end mt-16">

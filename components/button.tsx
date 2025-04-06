@@ -18,7 +18,7 @@ export function Button({ title, isLoading = false, ...rest }: Props) {
       disabled={isLoading}
     >
       {isLoading ? (
-        <ButtonSpinner size={"small"} />
+        <ButtonSpinner size="small" className="text-white" />
       ) : (
         <ButtonText className="text-white">{title}</ButtonText>
       )}
