@@ -6,7 +6,11 @@ Uma aplicação mobile para gerenciamento de treinos e exercícios de academia, 
 
 Veja abaixo uma demonstração da aplicação em funcionamento:
 
-[Demo]
+
+
+https://github.com/user-attachments/assets/f127504a-719b-47af-b94a-f522eaaf86b3
+
+
 
 ## 📱 Sobre o projeto
 
