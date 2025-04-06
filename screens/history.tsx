@@ -80,7 +80,8 @@ export function History() {
           }
           ListEmptyComponent={
             <Text className="text-brand-gray-200 text-center">
-              Nenhum exercício realizado
+              Não há exercícios realizados ainda.{"\n"}
+              Vamos fazer exercícios hoje?
             </Text>
           }
           showsVerticalScrollIndicator={false}
