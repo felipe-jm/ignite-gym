@@ -13,9 +13,14 @@ import { Text } from "@components/ui/text";
 import { Heading } from "@components/ui/heading";
 import { Input } from "@components/input";
 import { Button } from "@components/button";
+import { useToast } from "@components/ui/toast";
 
 import BackgroundImage from "@assets/background.png";
 import Logo from "@assets/logo.svg";
+
+import { api } from "@services/api";
+import { AppError } from "@utils/app-error";
+import { ToastMessage } from "@components/toast-message";
 
 type FormData = {
   name: string;
@@ -41,6 +46,8 @@ const signUpSchema = z
 export function SignUp() {
   const navigator = useNavigation();
 
+  const toast = useToast();
+
   const {
     control,
     handleSubmit,
@@ -60,8 +67,36 @@ export function SignUp() {
     navigator.goBack();
   }
 
-  function handleSignUp({ name, email, password, password_confirm }: FormData) {
-    console.log(name, email, password, password_confirm);
+  async function handleSignUp({ name, email, password }: FormData) {
+    try {
+      const response = await api.post("/users", {
+        name,
+        email,
+        password,
+      });
+
+      console.log(response);
+    } catch (error) {
+      const isAppError = error instanceof AppError;
+
+      const title = isAppError ? error.message : "Erro ao criar usuário";
+      const description = isAppError
+        ? error.message
+        : "Ocorreu um erro ao criar o usuário";
+
+      toast.show({
+        placement: "top",
+        render: ({ id }) => (
+          <ToastMessage
+            id={id}
+            action="error"
+            title={title}
+            description={description}
+            onClose={() => toast.close(id)}
+          />
+        ),
+      });
+    }
   }
 
   return (
