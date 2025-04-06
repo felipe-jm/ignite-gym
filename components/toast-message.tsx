@@ -24,7 +24,7 @@ export function ToastMessage({
     <Toast
       nativeID={`toast-${id}`}
       action={action}
-      className={`${action === "success" ? "bg-success-500" : "bg-error-500"} mt-10 w-full`}
+      className={`${action === "success" ? "bg-brand-green-500" : "bg-brand-red-500"} mt-10 w-full`}
     >
       <VStack space="xs">
         <Pressable className="self-end" onPress={onClose}>

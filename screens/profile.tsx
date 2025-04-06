@@ -24,6 +24,7 @@ import defaultUserPhotoImg from "@assets/userPhotoDefault.png";
 
 import { useAuth } from "@hooks/useAuth";
 import { api } from "@services/api";
+import { AppError } from "@utils/app-error";
 
 type FormDataProps = {
   name: string;
@@ -70,7 +71,7 @@ const profileSchema = z
 export function Profile() {
   const toast = useToast();
 
-  const { user } = useAuth();
+  const { user, updateUserProfile } = useAuth();
 
   const {
     control,
@@ -90,6 +91,8 @@ export function Profile() {
       ? { uri: `${api.defaults.baseURL}/avatar/${user.avatar}` }
       : defaultUserPhotoImg
   );
+
+  const [isUpdating, setIsUpdating] = useState(false);
 
   async function handleUserPhotoSelect() {
     try {
@@ -133,7 +136,51 @@ export function Profile() {
   }
 
   async function handleProfileUpdate(data: FormDataProps) {
-    console.log(data);
+    try {
+      setIsUpdating(true);
+
+      const updatedUser = user;
+      updatedUser.name = data.name;
+
+      await api.put("/users", {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        old_password: data.old_password,
+      });
+
+      await updateUserProfile(updatedUser);
+
+      toast.show({
+        placement: "top",
+        render: ({ id }) => (
+          <ToastMessage
+            id={id}
+            action="success"
+            title="Perfil atualizado com sucesso!"
+            onClose={() => toast.close(id)}
+          />
+        ),
+      });
+    } catch (error) {
+      const isAppError = error instanceof AppError;
+
+      const title = isAppError ? error.message : "Erro ao atualizar perfil";
+
+      toast.show({
+        placement: "top",
+        render: ({ id }) => (
+          <ToastMessage
+            id={id}
+            action="error"
+            title={title}
+            onClose={() => toast.close(id)}
+          />
+        ),
+      });
+    } finally {
+      setIsUpdating(false);
+    }
   }
 
   return (
@@ -236,6 +283,7 @@ export function Profile() {
             <Button
               title="Atualizar"
               onPress={handleSubmit(handleProfileUpdate)}
+              isLoading={isUpdating}
             />
           </Center>
         </Center>
