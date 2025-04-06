@@ -86,12 +86,6 @@ export function Profile() {
     resolver: zodResolver(profileSchema),
   });
 
-  const [userPhoto, setUserPhoto] = useState(
-    user.avatar
-      ? { uri: `${api.defaults.baseURL}/avatar/${user.avatar}` }
-      : defaultUserPhotoImg
-  );
-
   const [isUpdating, setIsUpdating] = useState(false);
 
   async function handleUserPhotoSelect() {
@@ -108,9 +102,11 @@ export function Profile() {
       }
 
       if (photoSelected.assets[0].uri) {
-        const photoUri = photoSelected.assets[0].uri;
+        const selectedPhoto = photoSelected.assets[0];
 
-        const photoInfo = (await FileSystem.getInfoAsync(photoUri)) as {
+        const photoInfo = (await FileSystem.getInfoAsync(
+          selectedPhoto.uri
+        )) as {
           size: number;
         };
 
@@ -128,7 +124,43 @@ export function Profile() {
           });
         }
 
-        setUserPhoto(photoSelected.assets[0].uri);
+        const fileExtension = selectedPhoto.uri.split(".").pop();
+
+        const photoFile = {
+          name: `${user.name}.${fileExtension}`.toLowerCase(),
+          uri: selectedPhoto.uri,
+          type: `${selectedPhoto.type}/${fileExtension}`,
+        } as any;
+
+        const userPhotoUploadFormData = new FormData();
+        userPhotoUploadFormData.append("avatar", photoFile);
+
+        const avatarUpdatedResponse = await api.patch(
+          "/users/avatar",
+          userPhotoUploadFormData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+
+        const userUpdated = user;
+        userUpdated.avatar = avatarUpdatedResponse.data.avatar;
+
+        await updateUserProfile(userUpdated);
+
+        toast.show({
+          placement: "top",
+          render: ({ id }) => (
+            <ToastMessage
+              id={id}
+              action="success"
+              title="Foto atualizada com sucesso!"
+              onClose={() => toast.close(id)}
+            />
+          ),
+        });
       }
     } catch (error) {
       console.log(error);
@@ -191,7 +223,9 @@ export function Profile() {
         <Center className="mt-6 px-10">
           <UserPhoto
             source={{
-              uri: userPhoto,
+              uri: user.avatar
+                ? `${api.defaults.baseURL}/avatar/${user.avatar}`
+                : defaultUserPhotoImg,
             }}
             alt="Foto do usuário"
             size="xl"
