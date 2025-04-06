@@ -247,6 +247,7 @@ export function Profile() {
                   className="bg-brand-gray-600"
                   onChangeText={onChange}
                   value={value}
+                  secureTextEntry
                   errorMessage={errors.old_password?.message}
                 />
               )}
@@ -261,6 +262,7 @@ export function Profile() {
                   className="bg-brand-gray-600"
                   onChangeText={onChange}
                   value={value}
+                  secureTextEntry
                   errorMessage={errors.password?.message}
                 />
               )}
@@ -275,6 +277,7 @@ export function Profile() {
                   className="bg-brand-gray-600"
                   onChangeText={onChange}
                   value={value}
+                  secureTextEntry
                   errorMessage={errors.confirm_password?.message}
                 />
               )}
