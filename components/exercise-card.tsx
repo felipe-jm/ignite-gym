@@ -9,9 +9,14 @@ import { Heading } from "./ui/heading";
 import { Text } from "./ui/text";
 import { Icon } from "./ui/icon";
 
-type ExerciseCardProps = TouchableOpacityProps;
+import { ExerciseDTO } from "@dtos/exercise-dto";
+import { api } from "@services/api";
 
-export function ExerciseCard({ ...rest }: ExerciseCardProps) {
+type ExerciseCardProps = TouchableOpacityProps & {
+  data: ExerciseDTO;
+};
+
+export function ExerciseCard({ data, ...rest }: ExerciseCardProps) {
   return (
     <TouchableOpacity {...rest}>
       <HStack
@@ -20,7 +25,7 @@ export function ExerciseCard({ ...rest }: ExerciseCardProps) {
       >
         <Image
           source={{
-            uri: "https://github.com/felipe-jm.png",
+            uri: `${api.defaults.baseURL}/exercise/thumb/${data.thumb}`,
           }}
           alt="Imagem do exercício"
           size="md"
@@ -30,10 +35,10 @@ export function ExerciseCard({ ...rest }: ExerciseCardProps) {
 
         <VStack className="flex-1">
           <Heading className="text-white" size="lg">
-            Remada
+            {data.name}
           </Heading>
           <Text className="text-brand-gray-200" numberOfLines={2}>
-            3 séries x 12 repetições
+            {data.series} séries x {data.repetitions} repetições
           </Text>
         </VStack>
 
