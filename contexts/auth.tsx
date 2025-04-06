@@ -8,7 +8,11 @@ import {
   saveUserStorage,
   getUserStorage,
 } from "@storage/user";
-import { getAuthToken, storageAuthToken } from "@storage/auth-token";
+import {
+  getAuthToken,
+  removeAuthToken,
+  storageAuthToken,
+} from "@storage/auth-token";
 
 export type AuthContextDataProps = {
   user: UserDTO;
@@ -67,6 +71,7 @@ export const AuthProvider = ({ children }: AuthContextProviderProps) => {
 
       setUser({} as UserDTO);
       await removeUserStorage();
+      await removeAuthToken();
     } catch (error) {
       throw error;
     } finally {
