@@ -12,7 +12,6 @@ import { Exercise } from "@screens/exercise";
 import { Profile } from "@screens/profile";
 import { History } from "@screens/history";
 import { Platform } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 // Define theme constants
 const theme = {
@@ -72,59 +71,57 @@ export function AppRoutes() {
   // TODO: add color scheme and tab bar colors according to the theme
 
   return (
-    <SafeAreaView className="flex-1 bg-brand-gray-900">
-      <Navigator
-        screenOptions={{
-          headerShown: false,
-          tabBarShowLabel: false,
-          tabBarActiveTintColor: theme.colors.brand.green[500],
-          tabBarInactiveTintColor: theme.colors.brand.gray[200],
-          tabBarStyle: {
-            backgroundColor: theme.colors.brand.gray[600],
-            borderTopWidth: 0,
-            height: Platform.OS === "android" ? "auto" : 96,
-            paddingBottom: theme.spacing[10],
-            paddingTop: theme.spacing[6],
+    <Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarShowLabel: false,
+        tabBarActiveTintColor: theme.colors.brand.green[500],
+        tabBarInactiveTintColor: theme.colors.brand.gray[200],
+        tabBarStyle: {
+          backgroundColor: theme.colors.brand.gray[600],
+          borderTopWidth: 0,
+          height: Platform.OS === "android" ? "auto" : 96,
+          paddingBottom: theme.spacing[10],
+          paddingTop: theme.spacing[6],
+        },
+      }}
+    >
+      <Screen
+        name="home"
+        component={Home}
+        options={{
+          tabBarIcon: ({ color }: { color: string }) => (
+            <HomeSvg fill={color} width={24} height={24} />
+          ),
+        }}
+      />
+      <Screen
+        name="history"
+        component={History}
+        options={{
+          tabBarIcon: ({ color }: { color: string }) => (
+            <HistorySvg fill={color} width={24} height={24} />
+          ),
+        }}
+      />
+      <Screen
+        name="profile"
+        component={Profile}
+        options={{
+          tabBarIcon: ({ color }: { color: string }) => (
+            <ProfileSvg fill={color} width={24} height={24} />
+          ),
+        }}
+      />
+      <Screen
+        name="exercise"
+        component={Exercise}
+        options={{
+          tabBarItemStyle: {
+            display: "none",
           },
         }}
-      >
-        <Screen
-          name="home"
-          component={Home}
-          options={{
-            tabBarIcon: ({ color }: { color: string }) => (
-              <HomeSvg fill={color} width={24} height={24} />
-            ),
-          }}
-        />
-        <Screen
-          name="history"
-          component={History}
-          options={{
-            tabBarIcon: ({ color }: { color: string }) => (
-              <HistorySvg fill={color} width={24} height={24} />
-            ),
-          }}
-        />
-        <Screen
-          name="profile"
-          component={Profile}
-          options={{
-            tabBarIcon: ({ color }: { color: string }) => (
-              <ProfileSvg fill={color} width={24} height={24} />
-            ),
-          }}
-        />
-        <Screen
-          name="exercise"
-          component={Exercise}
-          options={{
-            tabBarItemStyle: {
-              display: "none",
-            },
-          }}
-        />
-      </Navigator>
-    </SafeAreaView>
+      />
+    </Navigator>
   );
 }
