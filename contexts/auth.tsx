@@ -8,6 +8,7 @@ import {
   saveUserStorage,
   getUserStorage,
 } from "@storage/user";
+import { getAuthToken, storageAuthToken } from "@storage/auth-token";
 
 export type AuthContextDataProps = {
   user: UserDTO;
@@ -29,13 +30,31 @@ export const AuthProvider = ({ children }: AuthContextProviderProps) => {
   const [isLoadingUserStorageData, setIsLoadingUserStorageData] =
     useState(true);
 
+  async function updateUserAndTokenStorage(userData: UserDTO, token: string) {
+    api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    setUser(userData);
+  }
+
+  async function storageUserAndToken(userData: UserDTO, token: string) {
+    try {
+      setIsLoadingUserStorageData(true);
+
+      await storageAuthToken(token);
+      await saveUserStorage(userData);
+    } catch (error) {
+      throw error;
+    } finally {
+      setIsLoadingUserStorageData(false);
+    }
+  }
+
   async function signIn(email: string, password: string) {
     try {
       const { data } = await api.post("/sessions", { email, password });
 
-      if (data.user) {
-        saveUserStorage(data.user);
-        setUser(data.user);
+      if (data.user && data.token) {
+        await storageUserAndToken(data.user, data.token);
+        updateUserAndTokenStorage(data.user, data.token);
       }
     } catch (err) {
       throw err;
@@ -57,10 +76,13 @@ export const AuthProvider = ({ children }: AuthContextProviderProps) => {
 
   async function loadUserData() {
     try {
-      const userLogged = await getUserStorage();
+      setIsLoadingUserStorageData(true);
 
-      if (userLogged.id) {
-        setUser(userLogged);
+      const loggedUser = await getUserStorage();
+      const token = await getAuthToken();
+
+      if (loggedUser.id && token) {
+        updateUserAndTokenStorage(loggedUser, token);
       }
     } catch (error) {
       throw error;
