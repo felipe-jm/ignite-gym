@@ -42,6 +42,7 @@ export function Exercise() {
   const [exercise, setExercise] = useState<ExerciseDTO>();
 
   const [isLoading, setIsLoading] = useState(true);
+  const [isMarkingAsDone, setIsMarkingAsDone] = useState(false);
 
   function handleGoBack() {
     navigation.goBack();
@@ -74,6 +75,48 @@ export function Exercise() {
       });
     } finally {
       setIsLoading(false);
+    }
+  }
+
+  async function handleMarkExerciseAsDone() {
+    try {
+      setIsMarkingAsDone(true);
+
+      await api.post("/history", { exercise_id: exerciseId });
+
+      toast.show({
+        placement: "top",
+        render: ({ id }) => (
+          <ToastMessage
+            id={id}
+            action="success"
+            title="Parabéns! Exercício realizado com sucesso e adicionado ao seu histórico! 💪🏼"
+            onClose={() => toast.close(id)}
+          />
+        ),
+      });
+
+      navigation.navigate("history");
+    } catch (error) {
+      const isAppError = error instanceof AppError;
+
+      const title = isAppError
+        ? error.message
+        : "Não foi possível marcar o exercício como realizado";
+
+      toast.show({
+        placement: "top",
+        render: ({ id }) => (
+          <ToastMessage
+            id={id}
+            action="error"
+            title={title}
+            onClose={() => toast.close(id)}
+          />
+        ),
+      });
+    } finally {
+      setIsMarkingAsDone(false);
     }
   }
 
@@ -142,7 +185,11 @@ export function Exercise() {
                 </HStack>
               </HStack>
 
-              <Button title="Marcar como realizado" />
+              <Button
+                title="Marcar como realizado"
+                onPress={handleMarkExerciseAsDone}
+                isLoading={isMarkingAsDone}
+              />
             </Box>
           </VStack>
         </ScrollView>
