@@ -28,7 +28,7 @@ export default function App() {
 
   return (
     <GluestackUIProvider>
-      <SafeAreaView className="flex-1 bg-background-0">
+      <SafeAreaView className="flex-1 bg-brand-gray-900">
         <StatusBar backgroundColor="transparent" style="light" translucent />
 
         <Routes />

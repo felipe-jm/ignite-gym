@@ -25,7 +25,7 @@ export function SignIn() {
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
-      className="flex-grow bg-background-900 h-full"
+      className="flex-grow bg-brand-gray-900 h-full"
     >
       <VStack className="w-full flex-1" space="md">
         <Image

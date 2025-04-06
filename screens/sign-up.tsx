@@ -102,9 +102,9 @@ export function SignUp() {
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
-      className="flex-grow bg-background-900 h-full"
+      className="flex-grow bg-brand-gray-900 h-full"
     >
-      <VStack space="4xl" className="px-10 pb-16 flex-1">
+      <VStack className="w-full flex-1" space="md">
         <Image
           className="absolute w-full h-[624]"
           defaultSource={BackgroundImage}

@@ -14,13 +14,13 @@ export function Button({ title, isLoading = false, ...rest }: Props) {
   return (
     <GluestackButton
       {...rest}
-      className="w-full rounded-md h-14 bg-brand-green-700"
+      className="w-full rounded-md h-14 bg-brand-green-700 "
       disabled={isLoading}
     >
       {isLoading ? (
         <ButtonSpinner size={"small"} />
       ) : (
-        <ButtonText>{title}</ButtonText>
+        <ButtonText className="text-white">{title}</ButtonText>
       )}
     </GluestackButton>
   );
